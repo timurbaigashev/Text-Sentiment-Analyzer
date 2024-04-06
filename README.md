@@ -28,7 +28,50 @@ python Flask.py
 
 2. Access the application through a web browser at http://localhost:5000.
   
-3. Enter text into the provided input box and click the "Analyze" button to see the sentiment analysis result.
+3. Launch Flask server and go on through provided ip URL : then ---> HTML page:
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Sentiment Analyzer</title>
+</head>
+
+<body>
+    <h1>Text Sentiment Analyzer</h1>
+    <form id="analyzeForm">
+        <textarea id="textInput" rows="4" cols="50" placeholder="Enter your text here..."></textarea><br>
+        <input type="submit" value="Analyze">
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('analyzeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var text = document.getElementById('textInput').value;
+
+            fetch('/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = 'Sentiment: ' + data.sentiment;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+
+</html>
+```
+4.  Enter text into the provided input box and click the "Analyze" button to see the sentiment analysis result.
 
 ## Notes:
 
