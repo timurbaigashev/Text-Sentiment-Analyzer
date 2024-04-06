@@ -1,6 +1,6 @@
 # Text-Sentiment-Analyzer
-Clone the repository from git clone: https://github.com/timurbaigashev/Text-Sentiment-Analyzer."\n"
-Go to project directory: cd projects\Flask-Text$Analyzer
+Clone the repository from git clone: https://github.com/timurbaigashev/Text-Sentiment-Analyzer.
+"\n"Go to project directory: cd projects\Flask-Text$Analyzer
 Install the required dependencies using the following command:
 
 pip install Flask 
