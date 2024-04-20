@@ -43,6 +43,12 @@ python Flask.py
     <h1>Text Sentiment Analyzer</h1>
     <form id="analyzeForm">
         <textarea id="textInput" rows="4" cols="50" placeholder="Enter your text here..."></textarea><br>
+        <input type="checkbox" id="linearSVC" name="algorithm" value="svc">
+        <label for="linearSVC">LinearSVC</label><br>
+        <input type="checkbox" id="randomForest" name="algorithm" value="rf">
+        <label for="randomForest">RandomForest</label><br>
+        <input type="checkbox" id="naiveBayes" name="algorithm" value="nb">
+        <label for="naiveBayes">NaiveBayes</label><br>
         <input type="submit" value="Analyze">
     </form>
     <div id="result"></div>
@@ -52,8 +58,11 @@ python Flask.py
             e.preventDefault();
 
             var text = document.getElementById('textInput').value;
+            var selectedAlgorithm = document.querySelector('input[name="algorithm"]:checked').value;
 
-            fetch('/analyze', {
+            var url = '/analyze_' + selectedAlgorithm;
+
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
